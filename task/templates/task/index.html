@@ -1,0 +1,41 @@
+{% extends 'task/layout.html' %} {% block content %}
+
+<div class="wrapper">
+  <div class="task_display">
+    <div class="task_info">
+    <h2 class="title">Не начатое</h2>
+    <ul>
+      {% for task in not_started_tasks %}
+      <li>
+        {{ task.title }} -
+        <a href="{% url 'move_task' task.id 'in_progress' %}" class="check">Взять задание</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="task_info">
+    <h2 class="title">В процессе</h2>
+    <ul>
+      {% for task in in_progress_tasks %}
+      <li>
+        {{ task.title }} -
+        <a href="{% url 'move_task' task.id 'completed' %}"
+           class="check">Задание выполнено</a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="task_info"><h2 class="title">Выполеное</h2>
+    <ul>
+      {% for task in completed_tasks %}
+      <li>{{ task.title }} - Выполнено</li>
+      {% endfor %}
+    </ul></div>
+  </div>
+
+  <button class="button"><a href="{% url 'add_task' %}">Добавить задачу</a></button>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'task/layout.html' %} {% block content %}
+
+<div class="wrapper">
+  <div class="task_form">
+    <h2 class="title">Добавить задачу</h2>
+    <form method="post" action="{% url 'add_task' %}">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" class="check_btn"><a>Добавить</a></button>
+    </form>
+  </div>
+
+  <button class="button"><a href="{% url 'task_list' %}">Вернуться к списку задач</a></button>
+</div>
+
+{% endblock %}
